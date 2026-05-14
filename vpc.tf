@@ -15,7 +15,7 @@ resource "aws_subnet" "public" {
 
   vpc_id                  = aws_vpc.eks_vpc.id
   cidr_block              = cidrsubnet("10.0.0.0/16", 8, count.index)
-  availability_zone       = ["ap-south-1a", "ap-south-1b"][count.index]
+  availability_zone       = ["us-east-1a", "us-east-1b"][count.index]
   map_public_ip_on_launch = true
 
   tags = {
@@ -34,7 +34,7 @@ resource "aws_subnet" "private" {
 
   vpc_id            = aws_vpc.eks_vpc.id
   cidr_block        = cidrsubnet("10.0.0.0/16", 8, count.index + 10)
-  availability_zone = ["ap-south-1a", "ap-south-1b"][count.index]
+  availability_zone = ["us-east-1a", "us-east-1b"][count.index]
 
   tags = {
     Name = "private-subnet-${count.index}"
